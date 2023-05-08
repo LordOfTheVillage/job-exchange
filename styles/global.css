@@ -1,4 +1,3 @@
-div {
-  background-color: red;
-  color: white;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

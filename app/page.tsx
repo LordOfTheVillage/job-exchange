@@ -4,7 +4,7 @@ import "@styles/global.css"
 interface HomeProps {}
 
 const Home: FunctionComponent<HomeProps> = () => {
-  return <div>Home page</div>
+  return <div className=" text-red-500">Home page</div>
 }
 
 export default Home
