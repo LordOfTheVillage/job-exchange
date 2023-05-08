@@ -1,3 +1,5 @@
+import Header from "@components/Header"
+
 export const metadata = {
   title: "Job Exchange",
   description: "This is a job exchange",
@@ -5,8 +7,11 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="ru">
+      <body>
+        <Header />
+        {children}
+        </body>
     </html>
   )
 }

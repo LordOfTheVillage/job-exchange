@@ -1,10 +1,15 @@
-import { FunctionComponent } from "react"
 import "@styles/global.css"
+import api from "@api/api"
+import VacanciesList from "@components/VacanciesList"
 
-interface HomeProps {}
-
-const Home: FunctionComponent<HomeProps> = () => {
-  return <div className=" text-red-500">Home page</div>
+const Page = async () => {
+  const vacancies = await api.getVacancies()
+  return (
+    <div className=" text-red-500">
+      Hello, {vacancies.objects.length}
+      <VacanciesList list={vacancies.objects} />
+    </div>
+  )
 }
 
-export default Home
+export default Page
