@@ -1,11 +1,12 @@
 "use client"
-import { FC, ReactNode, useCallback, useMemo, useState } from "react"
+import { FC, ReactNode, useMemo, useState } from "react"
 import SelectFilter from "./SelectFilter"
 import RangeFilter from "./RangeFilter"
 import { CataloguesType, RangeType } from "@utils/types/types"
 import { usePathname, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import useQueryString from "@hooks/useQueryString"
+import { QUERY_NAMES } from "@utils/utils"
 
 interface FiltersProps {
   children: ReactNode
@@ -17,13 +18,13 @@ const Filters: FC<FiltersProps> = ({ children, catalogues }) => {
   const searchParams = useSearchParams()
   const createQueryString = useQueryString(searchParams)
   const defaultSelected = useMemo(
-    () => searchParams.get("catalogues") || "",
+    () => searchParams.get(QUERY_NAMES.CATALOGUES) || "",
     [searchParams]
   )
   const defaultRange = useMemo(
     () => ({
-      min: Number(searchParams.get("payment_from")) || undefined,
-      max: Number(searchParams.get("payment_to")) || undefined,
+      min: Number(searchParams.get(QUERY_NAMES.PAYMENT_FROM)) || undefined,
+      max: Number(searchParams.get(QUERY_NAMES.PAYMENT_TO)) || undefined,
     }),
     [searchParams]
   )
@@ -32,9 +33,9 @@ const Filters: FC<FiltersProps> = ({ children, catalogues }) => {
 
   const paramsObject = useMemo(
     () => [
-      ["payment_from", range.min],
-      ["payment_to", range.max],
-      ["catalogues", selected],
+      [QUERY_NAMES.PAYMENT_FROM, range.min],
+      [QUERY_NAMES.PAYMENT_TO, range.max],
+      [QUERY_NAMES.CATALOGUES, selected],
     ],
     [range.max, range.min, selected]
   )
@@ -48,9 +49,7 @@ const Filters: FC<FiltersProps> = ({ children, catalogues }) => {
           defaultValue={defaultSelected}
         />
         <RangeFilter onChange={setRange} defaultRange={defaultRange} />
-        <Link href={pathname + "?" + createQueryString(paramsObject)}>
-          Применить
-        </Link>
+        <Link href={pathname + createQueryString(paramsObject)}>Применить</Link>
       </div>
       {children}
     </div>

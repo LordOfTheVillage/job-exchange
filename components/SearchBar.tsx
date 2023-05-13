@@ -1,18 +1,19 @@
 "use client"
-import { FC, useCallback, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import { usePathname, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import useQueryString from "@hooks/useQueryString"
+import { QUERY_NAMES } from "@utils/utils"
 
-interface SearchBarProps {
-  defaultValue: string
-}
+interface SearchBarProps {}
 
-const SearchBar: FC<SearchBarProps> = ({ defaultValue }) => {
-  const [value, setValue] = useState<string>(defaultValue)
-  const pathname = usePathname()
+const SearchBar: FC<SearchBarProps> = () => {
   const searchParams = useSearchParams()
-  const paramsObject = useMemo(() => [["keyword", value]], [value])
+  const [value, setValue] = useState<string>(
+    searchParams.get(QUERY_NAMES.SEARCH) || ""
+  )
+  const pathname = usePathname()
+  const paramsObject = useMemo(() => [[QUERY_NAMES.SEARCH, value]], [value])
   const createQueryString = useQueryString(searchParams)
 
   return (
@@ -23,7 +24,7 @@ const SearchBar: FC<SearchBarProps> = ({ defaultValue }) => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <Link href={pathname + "?" + createQueryString(paramsObject)}>Поиск</Link>
+      <Link href={pathname + createQueryString(paramsObject)}>Поиск</Link>
     </div>
   )
 }

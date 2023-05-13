@@ -22,10 +22,7 @@ const NumberInput: FC<NumberInputProps> = ({ onChange, defaultValue }) => {
   return (
     <input
       type="number"
-      // onChange={(e) => onChange(Number(e.target.value))}
       onChange={handleInputChange}
-      // defaultValue={defaultValue}
-      // pattern="[0-9]*"
       value={value}
     />
   )
