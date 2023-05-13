@@ -5,13 +5,12 @@ import SearchBar from "@components/SearchBar"
 import { QueryParams } from "@utils/types/types"
 import Filters from "@components/Filters"
 
-const Page = async ({ searchParams }: any) => {
-  const vacancies = await api.getVacancies(searchParams as QueryParams)
+const Page = async ({ searchParams }: { [key: string]: QueryParams }) => {
+  const vacancies = await api.getVacancies(searchParams)
   const catalogues = await api.getCatalogues()
   return (
     <div className=" text-red-500">
-      <h1>Hello, {searchParams["keyword"]}</h1>
-      <SearchBar />
+      <SearchBar defaultValue={`${searchParams["keyword"] || ""}`} />
       <Filters catalogues={catalogues}>
         <VacanciesList list={vacancies.objects} />
       </Filters>

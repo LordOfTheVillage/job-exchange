@@ -11,6 +11,10 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, onClick, status }) => {
   return (
     <>
       <Link href={`${item.id}`}>{item.firm_name}</Link>
+      <div>{item.profession}</div>
+      <div>
+        {item.payment_from} - {item.payment_to}
+      </div>
       <button onClick={() => onClick(item)}>{status ? "Remove" : "Add"}</button>
     </>
   )

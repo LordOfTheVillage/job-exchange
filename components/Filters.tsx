@@ -1,10 +1,11 @@
 "use client"
-import { FC, ReactNode, useCallback, useState } from "react"
+import { FC, ReactNode, useCallback, useMemo, useState } from "react"
 import SelectFilter from "./SelectFilter"
 import RangeFilter from "./RangeFilter"
-import { CataloguesType } from "@utils/types/types"
+import { CataloguesType, RangeType } from "@utils/types/types"
 import { usePathname, useSearchParams } from "next/navigation"
 import Link from "next/link"
+import useQueryString from "@hooks/useQueryString"
 
 interface FiltersProps {
   children: ReactNode
@@ -12,21 +13,30 @@ interface FiltersProps {
 }
 
 const Filters: FC<FiltersProps> = ({ children, catalogues }) => {
-  const [selected, setSelected] = useState("")
   const pathname = usePathname()
   const searchParams = useSearchParams()
-
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams.toString())
-      if (value) {
-        params.set(name, value)
-      } else {
-        params.delete(name)
-      }
-      return params.toString()
-    },
+  const createQueryString = useQueryString(searchParams)
+  const defaultSelected = useMemo(
+    () => searchParams.get("catalogues") || "",
     [searchParams]
+  )
+  const defaultRange = useMemo(
+    () => ({
+      min: Number(searchParams.get("payment_from")) || undefined,
+      max: Number(searchParams.get("payment_to")) || undefined,
+    }),
+    [searchParams]
+  )
+  const [selected, setSelected] = useState(defaultSelected)
+  const [range, setRange] = useState<RangeType>(defaultRange)
+
+  const paramsObject = useMemo(
+    () => [
+      ["payment_from", range.min],
+      ["payment_to", range.max],
+      ["catalogues", selected],
+    ],
+    [range.max, range.min, selected]
   )
 
   return (
@@ -35,9 +45,10 @@ const Filters: FC<FiltersProps> = ({ children, catalogues }) => {
         <SelectFilter
           list={catalogues}
           onSelect={(value: string) => setSelected(value)}
+          defaultValue={defaultSelected}
         />
-        <RangeFilter />
-        <Link href={pathname + "?" + createQueryString("catalogues", selected)}>
+        <RangeFilter onChange={setRange} defaultRange={defaultRange} />
+        <Link href={pathname + "?" + createQueryString(paramsObject)}>
           Применить
         </Link>
       </div>

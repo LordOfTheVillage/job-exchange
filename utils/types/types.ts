@@ -2,7 +2,11 @@ export interface NamedType {
   title: string
 }
 
-export interface CataloguesType extends NamedType {}
+export type ListedType = CataloguesType
+
+export interface CataloguesType extends NamedType {
+  key: number
+}
 
 export interface VacancyType {
   id: number
@@ -22,4 +26,9 @@ export interface VacancyListType {
 
 export interface QueryParams {
   [key: string]: string | number | boolean
+}
+
+export interface RangeType {
+  min: number | undefined
+  max: number | undefined
 }
