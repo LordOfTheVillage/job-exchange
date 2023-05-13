@@ -1,3 +1,9 @@
+export interface NamedType {
+  title: string
+}
+
+export interface CataloguesType extends NamedType {}
+
 export interface VacancyType {
   id: number
   profession: string
@@ -5,15 +11,15 @@ export interface VacancyType {
   payment_to: number
   payment_from: number
   currency: string
-  type_of_work: {
-    title: string
-  }
-  town: {
-    title: string
-  }
+  type_of_work: NamedType
+  town: NamedType
 }
 
 export interface VacancyListType {
   objects: VacancyType[]
   total: number
+}
+
+export interface QueryParams {
+  [key: string]: string | number | boolean
 }

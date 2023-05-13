@@ -1,0 +1,19 @@
+import { VacancyType } from "@utils/types/types"
+import Link from "next/link"
+import { FC } from "react"
+interface VacancyItemProps {
+  item: VacancyType
+  onClick: (item: VacancyType) => void
+  status: boolean
+}
+
+const VacancyItem: FC<VacancyItemProps> = ({ item, onClick, status }) => {
+  return (
+    <>
+      <Link href={`${item.id}`}>{item.firm_name}</Link>
+      <button onClick={() => onClick(item)}>{status ? "Remove" : "Add"}</button>
+    </>
+  )
+}
+
+export default VacancyItem
