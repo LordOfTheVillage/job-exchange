@@ -33,3 +33,5 @@ export interface RangeType {
   min: number | undefined
   max: number | undefined
 }
+
+export type ServerFC<P = {}> = (props: P) => Promise<JSX.Element>;

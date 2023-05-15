@@ -1,12 +1,13 @@
 import api from "@api/api"
 import FavoriteList from "@components/FavoriteList"
-import PaginationPanel from "@components/PaginationPanel"
-import VacanciesList from "@components/VacanciesList"
-import { QueryParams } from "@utils/types/types"
-import { QUERY_NAMES, countPages } from "@utils/utils"
-import { Suspense } from "react"
+import { QueryParams, ServerFC } from "@utils/types/types"
+import { QUERY_NAMES } from "@utils/utils"
 
-const Page = async ({ searchParams }: { [key: string]: QueryParams }) => {
+interface PageProps {
+  searchParams: QueryParams
+}
+
+const Page: ServerFC<PageProps> = async ({ searchParams }) => {
   if (!searchParams[QUERY_NAMES.IDS]) searchParams[QUERY_NAMES.IDS] = [""]
   const vacancies = await api.getVacancies(searchParams)
   return <FavoriteList vacancies={vacancies} />
