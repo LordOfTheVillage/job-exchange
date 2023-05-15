@@ -1,24 +1,22 @@
-import { VacancyType } from "./types/types"
-
 enum StorageKeys {
   VACANCIES = "vacancies",
 }
 
 class LocalStorage {
-  public toggleVacancy(vacancy: VacancyType) {
+  public toggleVacancy(vacancyId: number) {
     const vacancies = this.getVacancies()
-    const index = vacancies.findIndex((v) => v.id === vacancy.id)
+    const index = vacancies.indexOf(vacancyId)
 
     if (index !== -1) {
       vacancies.splice(index, 1)
     } else {
-      vacancies.push(vacancy)
+      vacancies.push(vacancyId)
     }
 
     localStorage.setItem(StorageKeys.VACANCIES, JSON.stringify(vacancies))
   }
 
-  public getVacancies(): VacancyType[] {
+  public getVacancies(): number[] {
     const storageString = localStorage.getItem(StorageKeys.VACANCIES)
     return storageString ? JSON.parse(storageString) : []
   }

@@ -1,6 +1,6 @@
 "use client"
 import { VacancyType } from "@utils/types/types"
-import { FC, useMemo, useState } from "react"
+import { FC, useState } from "react"
 import VacancyItem from "./VacancyItem"
 import storage from "@utils/localStorage"
 
@@ -15,7 +15,7 @@ const VacanciesList: FC<VacanciesListProps> = ({ list, onClick }) => {
   )
 
   const handleSetFavorite = (item: VacancyType) => {
-    storage.toggleVacancy(item)
+    storage.toggleVacancy(item.id)
     setFavoriteVacancies(storage.getVacancies())
   }
 
@@ -26,7 +26,7 @@ const VacanciesList: FC<VacanciesListProps> = ({ list, onClick }) => {
           key={i}
           item={item}
           onClick={onClick || handleSetFavorite}
-          status={!!favoriteVacancies.find((v) => v.id === item.id)}
+          status={favoriteVacancies.includes(item.id)}
         />
       ))}
     </div>

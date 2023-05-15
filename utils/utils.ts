@@ -9,6 +9,11 @@ export enum QUERY_NAMES {
   PAYMENT_FROM = "payment_from",
   PAYMENT_TO = "payment_from",
   CATALOGUES = "catalogues",
+  IDS = "ids[]",
+}
+
+export const DEFAULT_VACANCIES_PARAMS = {
+  published: "1",
 }
 
 export const countPages = (total: number) => {

@@ -15,6 +15,7 @@ export interface VacancyType {
   payment_to: number
   payment_from: number
   currency: string
+  vacancyRichText: string
   type_of_work: NamedType
   town: NamedType
 }
@@ -25,7 +26,7 @@ export interface VacancyListType {
 }
 
 export interface QueryParams {
-  [key: string]: string | number | boolean
+  [key: string]: string | number | boolean | string[]
 }
 
 export interface RangeType {

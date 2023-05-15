@@ -8,6 +8,7 @@ import PaginationPanel from "@components/PaginationPanel"
 import { countPages } from "@utils/utils"
 
 const Page = async ({ searchParams }: { [key: string]: QueryParams }) => {
+  searchParams["published"] = "1"
   const vacancies = await api.getVacancies(searchParams)
   const catalogues = await api.getCatalogues()
   return (

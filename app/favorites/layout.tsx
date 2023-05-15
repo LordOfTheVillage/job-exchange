@@ -1,11 +1,12 @@
-import { FC } from "react"
+import { FC, Suspense } from "react"
+import Loading from "./loading"
 
 interface LayoutProps {
   children: React.ReactNode
 }
 
 const Layout: FC<LayoutProps> = ({ children }) => {
-  return <div>{children}</div>
+  return <Suspense fallback={<Loading />}>{children}</Suspense>
 }
 
 export default Layout

@@ -1,8 +1,14 @@
-import { CataloguesType, QueryParams, VacancyListType, VacancyType } from "@utils/types/types"
+import {
+  CataloguesType,
+  QueryParams,
+  VacancyListType,
+  VacancyType,
+} from "@utils/types/types"
+import { DEFAULT_VACANCIES_PARAMS } from "@utils/utils"
 
 enum URLS {
   vacancies = "/vacancies",
-  catalogues = "/catalogues"
+  catalogues = "/catalogues",
 }
 
 class API {
@@ -23,14 +29,22 @@ class API {
     const paramsString = Object.keys(params)
     if (!paramsString.length) return ""
     const queryString = paramsString
-      .map((key) => `${key}=${params[key]}`)
+      .map((key) => {
+        const value = params[key]
+        if (Array.isArray(value)) {
+          return value.map((v) => `${key}=${v}`).join("&")
+        } else {
+          return `${key}=${value}`
+        }
+      })
       .join("&")
     return `?${queryString}`
   }
 
   public async getVacancies(params: QueryParams = {}) {
+    const searchParams = { ...params, ...DEFAULT_VACANCIES_PARAMS }
     const response = await this.fetch(
-      URLS.vacancies + this.createQueryString(params)
+      URLS.vacancies + this.createQueryString(searchParams)
     )
     return (await response.json()) as VacancyListType
   }

@@ -1,24 +1,15 @@
-"use client"
+import api from "@api/api"
+import FavoriteList from "@components/FavoriteList"
+import PaginationPanel from "@components/PaginationPanel"
 import VacanciesList from "@components/VacanciesList"
-import storage from "@utils/localStorage"
-import { VacancyType } from "@utils/types/types"
-import { useState } from "react"
+import { QueryParams } from "@utils/types/types"
+import { QUERY_NAMES, countPages } from "@utils/utils"
+import { Suspense } from "react"
 
-const Page = () => {
-  const [vacancies, setVacancies] = useState(
-    storage.getVacancies()
-  )
-
-  const handleSetFavorite = (item: VacancyType) => {
-    storage.toggleVacancy(item)
-    setVacancies(storage.getVacancies())
-  }
-
-  return (
-    <div>
-      <VacanciesList list={vacancies} onClick={handleSetFavorite} />
-    </div>
-  )
+const Page = async ({ searchParams }: { [key: string]: QueryParams }) => {
+  if (!searchParams[QUERY_NAMES.IDS]) searchParams[QUERY_NAMES.IDS] = [""]
+  const vacancies = await api.getVacancies(searchParams)
+  return <FavoriteList vacancies={vacancies} />
 }
 
 export default Page
