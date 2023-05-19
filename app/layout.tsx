@@ -1,4 +1,5 @@
 import Header from "@components/Header"
+import RootStyleRegistry from "./emotion"
 
 export const metadata = {
   title: "Job Exchange",
@@ -8,10 +9,12 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ru">
-      <body>
-        <Header />
-        {children}
-        </body>
+      <body className="bg-gray-100">
+        <RootStyleRegistry>
+          <Header />
+          {children}
+        </RootStyleRegistry>
+      </body>
     </html>
   )
 }

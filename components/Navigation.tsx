@@ -1,3 +1,4 @@
+import { Flex, Text } from "@mantine/core"
 import router from "@utils/router"
 import Link from "next/link"
 import { FC } from "react"
@@ -17,13 +18,13 @@ const NAVIGATION_LINKS = [
 
 const Navigation: FC<NavigationProps> = () => {
   return (
-    <>
+    <Flex justify="space-between">
       {NAVIGATION_LINKS.map((link, i) => (
         <Link href={link.path} key={i}>
-          {link.title}
+          <Text className="hover:text-blue-500">{link.title}</Text>
         </Link>
       ))}
-    </>
+    </Flex>
   )
 }
 

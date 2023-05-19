@@ -12,6 +12,10 @@ export enum QUERY_NAMES {
   IDS = "ids[]",
 }
 
+export enum PLACEHOLDERS {
+  SEARCH = "Введите название вакансии",
+}
+
 export const DEFAULT_VACANCIES_PARAMS = {
   published: "1",
 }
