@@ -26,7 +26,7 @@ const PaginationPanel: FC<PaginationPanelProps> = ({ pageCount }) => {
 
   return (
     <Pagination
-      total={pageCount}
+      total={pageCount + 1}
       defaultChecked={true}
       value={currentPage}
       onChange={handleClick}
