@@ -37,15 +37,21 @@ export const countPages = (total: number) => {
   )
 }
 
-export const createPaymentText = (vacancy: VacancyType) => {
+export const createPaymentText = ({
+  payment_from,
+  payment_to,
+  currency,
+}: VacancyType) => {
   let text = "з/п "
-  if (vacancy.payment_from === 0) {
-    text += vacancy.payment_to
-  } else if (vacancy.payment_to === 0) {
-    text += `от ${vacancy.payment_from}`
+  if (payment_from === 0 && payment_to === 0) {
+    text += "не указана"
+  } else if (payment_from === 0) {
+    text += `${payment_to} ${currency}`
+  } else if (payment_to === 0) {
+    text += `от ${payment_from} ${currency}`
   } else {
-    text += `${vacancy.payment_from} -  ${vacancy.payment_to}`
+    text += `${payment_from} -  ${payment_to} ${currency}`
   }
 
-  return `${text} ${vacancy.currency}`
+  return text
 }

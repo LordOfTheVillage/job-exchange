@@ -18,7 +18,7 @@ const NAVIGATION_LINKS = [
 
 const Navigation: FC<NavigationProps> = () => {
   return (
-    <Flex justify="space-between">
+    <Flex justify="space-between" gap={60}>
       {NAVIGATION_LINKS.map((link, i) => (
         <Link href={link.path} key={i}>
           <Text className="hover:text-blue-500">{link.title}</Text>

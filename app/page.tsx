@@ -14,12 +14,12 @@ const Page: ServerFC<PageProps> = async ({ searchParams }) => {
   const vacancies = await api.getVacancies(searchParams)
   const catalogues = await api.getCatalogues()
   return (
-    <div className="flex">
+    <div className="flex gap-7">
       <Filters catalogues={catalogues} />
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-3">
         <SearchBar />
-        <PaginationPanel pageCount={countPages(vacancies.total)} />
         <VacanciesList list={vacancies.objects} />
+        <PaginationPanel pageCount={countPages(vacancies.total)} />
       </div>
     </div>
   )

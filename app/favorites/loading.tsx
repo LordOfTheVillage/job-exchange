@@ -1,9 +1,11 @@
+"use client"
 import { FC } from "react"
+import { Loader } from "@mantine/core"
 
 interface LoaderProps {}
 
 const Loading: FC<LoaderProps> = () => {
-  return <>Spinner</>
+  return <Loader />
 }
 
 export default Loading

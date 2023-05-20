@@ -30,6 +30,7 @@ const PaginationPanel: FC<PaginationPanelProps> = ({ pageCount }) => {
       defaultChecked={true}
       value={currentPage}
       onChange={handleClick}
+      className="mt-8 mx-auto"
     />
   )
 }

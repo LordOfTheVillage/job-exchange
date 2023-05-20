@@ -12,7 +12,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <body className="bg-gray-100">
         <RootStyleRegistry>
           <Header />
-          {children}
+          <div className="lg:px-40 pb-5 flex justify-center">{children}</div>
         </RootStyleRegistry>
       </body>
     </html>

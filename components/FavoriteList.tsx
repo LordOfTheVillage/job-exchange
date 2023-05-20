@@ -7,6 +7,8 @@ import { FC, ReactNode, useEffect, useState } from "react"
 import PaginationPanel from "./PaginationPanel"
 import VacanciesList from "./VacanciesList"
 import { VacancyListType, VacancyType } from "@utils/types/types"
+import { Flex } from "@mantine/core"
+import NoItems from "./NoItems"
 
 interface FavoriteListProps {
   vacancies: VacancyListType
@@ -41,10 +43,16 @@ const FavoriteList: FC<FavoriteListProps> = ({ vacancies }) => {
   }
 
   return (
-    <>
-      <PaginationPanel pageCount={countPages(total)} />
-      <VacanciesList list={list} onClick={handleOnClick} />
-    </>
+    <Flex direction={"column"}>
+      {list.length ? (
+        <>
+          <VacanciesList list={list} onClick={handleOnClick} />
+          <PaginationPanel pageCount={countPages(total)} />
+        </>
+      ) : (
+        <NoItems />
+      )}
+    </Flex>
   )
 }
 

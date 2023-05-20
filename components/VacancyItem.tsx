@@ -23,6 +23,7 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, onClick, status }) => {
       align={"start"}
       justify={"space-between"}
       className="rounded-xl p-6 border-gray-200 border"
+      style={{ minWidth: "773px" }}
     >
       <Flex gap={12} direction={"column"}>
         <Link href={`${item.id}`}>
