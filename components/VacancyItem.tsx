@@ -2,7 +2,14 @@
 import { VacancyType } from "@utils/types/types"
 import Link from "next/link"
 import { FC } from "react"
-import { Container, Flex, Title } from "@mantine/core"
+import { Flex, Title, Text } from "@mantine/core"
+import {
+  IconMapPin,
+  IconPointFilled,
+  IconStar,
+  IconStarFilled,
+} from "@tabler/icons-react"
+import { createPaymentText } from "@utils/utils"
 interface VacancyItemProps {
   item: VacancyType
   onClick: (item: VacancyType) => void
@@ -11,21 +18,35 @@ interface VacancyItemProps {
 
 const VacancyItem: FC<VacancyItemProps> = ({ item, onClick, status }) => {
   return (
-    <Flex>
-      <div>
+    <Flex
+      bg={"white"}
+      align={"start"}
+      justify={"space-between"}
+      className="rounded-xl p-6 border-gray-200 border"
+    >
+      <Flex gap={12} direction={"column"}>
         <Link href={`${item.id}`}>
-          <Title order={4}>{item.profession}</Title>
+          <Title color="blue" className="hover:cursor-pointer" order={4}>
+            {item.profession}
+          </Title>
         </Link>
-        <div>
-          <span>
-            {item.payment_from} - {item.payment_to}
-          </span>
-          {" * "}
-          <span>{item.type_of_work.title}</span>
-        </div>
-        <div>{item.town.title}</div>
-      </div>
-      <button onClick={() => onClick(item)}>{status ? "Remove" : "Add"}</button>
+        <Flex align={"center"} gap={12}>
+          <Title order={5}>{createPaymentText(item)}</Title>
+          <IconPointFilled className="text-gray-600" size={15} />
+          <Text>{item.type_of_work.title}</Text>
+        </Flex>
+        <Flex align={"center"} gap={8}>
+          <IconMapPin color="#ACADB9" />
+          {item.town.title}
+        </Flex>
+      </Flex>
+      <button onClick={() => onClick(item)}>
+        {status ? (
+          <IconStarFilled className="text-blue-500" />
+        ) : (
+          <IconStar color="#ACADB9" />
+        )}
+      </button>
     </Flex>
   )
 }

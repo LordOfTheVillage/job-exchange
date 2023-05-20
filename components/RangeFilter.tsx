@@ -1,14 +1,21 @@
 "use client"
 import { FC, useEffect, useState } from "react"
-import NumberInput from "./NumberInput"
+import CountInput from "./CountInput"
 import { RangeType } from "@utils/types/types"
+import { Text, Flex } from "@mantine/core"
+import { PLACEHOLDERS } from "@utils/utils"
 
 interface RangeFilterProps {
   onChange: (range: RangeType) => void
   defaultRange: RangeType
+  title: string
 }
 
-const RangeFilter: FC<RangeFilterProps> = ({ onChange, defaultRange }) => {
+const RangeFilter: FC<RangeFilterProps> = ({
+  onChange,
+  defaultRange,
+  title,
+}) => {
   const [min, setMin] = useState<number>()
   const [max, setMax] = useState<number>()
 
@@ -17,10 +24,21 @@ const RangeFilter: FC<RangeFilterProps> = ({ onChange, defaultRange }) => {
   }, [min, max, onChange])
 
   return (
-    <>
-      <NumberInput onChange={setMin} defaultValue={defaultRange.min} />
-      <NumberInput onChange={setMax} defaultValue={defaultRange.max} />
-    </>
+    <Flex direction="column" gap={8}>
+      <Text size={16} weight={700}>
+        {title}
+      </Text>
+      <CountInput
+        onChange={setMin}
+        defaultValue={defaultRange.min}
+        placeholder={PLACEHOLDERS.PAYMENT_FROM}
+      />
+      <CountInput
+        onChange={setMax}
+        defaultValue={defaultRange.max}
+        placeholder={PLACEHOLDERS.PAYMENT_TO}
+      />
+    </Flex>
   )
 }
 

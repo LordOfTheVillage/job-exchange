@@ -1,5 +1,5 @@
 "use client"
-import { FC, ReactNode, useMemo, useState } from "react"
+import { FC, useMemo, useState } from "react"
 import SelectFilter from "./SelectFilter"
 import RangeFilter from "./RangeFilter"
 import { CataloguesType, RangeType } from "@utils/types/types"
@@ -7,13 +7,14 @@ import { usePathname, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import useQueryString from "@hooks/useQueryString"
 import { QUERY_NAMES } from "@utils/utils"
+import { Flex, Button, Text } from "@mantine/core"
+import { IconX } from "@tabler/icons-react"
 
 interface FiltersProps {
-  children: ReactNode
   catalogues: CataloguesType[]
 }
 
-const Filters: FC<FiltersProps> = ({ children, catalogues }) => {
+const Filters: FC<FiltersProps> = ({ catalogues }) => {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const createQueryString = useQueryString(searchParams)
@@ -41,18 +42,44 @@ const Filters: FC<FiltersProps> = ({ children, catalogues }) => {
   )
 
   return (
-    <div className="flex">
-      <div className="flex flex-col">
+    <Flex
+      className="bg-white rounded-xl"
+      p={20}
+      gap={32}
+      w={315}
+      h={370}
+      style={{ border: "1px solid #EAEBED" }}
+      direction="column"
+    >
+      <Flex justify="space-between" align="center">
+        <Text weight={700} size={20}>
+          Фильтры
+        </Text>
+        <Link href={pathname}>
+          <Text size={14} color="#ACADB9" className="flex items-center">
+            Сбросить все <IconX size="0.8rem" className="mt-1 ml-1" />
+          </Text>
+        </Link>
+      </Flex>
+      <Flex direction="column" gap={20}>
         <SelectFilter
           list={catalogues}
           onSelect={(value: string) => setSelected(value)}
           defaultValue={defaultSelected}
+          title="Отрасли"
         />
-        <RangeFilter onChange={setRange} defaultRange={defaultRange} />
-        <Link href={pathname + createQueryString(paramsObject)}>Применить</Link>
-      </div>
-      {children}
-    </div>
+        <RangeFilter
+          onChange={setRange}
+          defaultRange={defaultRange}
+          title="Оклад"
+        />
+        <Link href={pathname + createQueryString(paramsObject)}>
+          <Button radius={8} fullWidth>
+            Применить
+          </Button>
+        </Link>
+      </Flex>
+    </Flex>
   )
 }
 

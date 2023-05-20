@@ -5,6 +5,7 @@ import Link from "next/link"
 import useQueryString from "@hooks/useQueryString"
 import { PLACEHOLDERS, QUERY_NAMES } from "@utils/utils"
 import { ActionIcon, Button, StarIcon, TextInput } from "@mantine/core"
+import { IconSearch } from "@tabler/icons-react"
 
 interface SearchBarProps {}
 
@@ -19,12 +20,13 @@ const SearchBar: FC<SearchBarProps> = () => {
 
   return (
     <TextInput
-      icon={<StarIcon />}
+      icon={<IconSearch size="1rem" />}
       value={value}
       onChange={(e) => setValue(e.target.value)}
       placeholder={PLACEHOLDERS.SEARCH}
       rightSectionWidth={80}
       size="md"
+      radius={8}
       rightSection={
         <Link href={pathname + createQueryString(paramsObject)}>
           <Button radius="md" size="xs">

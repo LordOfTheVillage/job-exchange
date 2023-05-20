@@ -20,7 +20,7 @@ const VacanciesList: FC<VacanciesListProps> = ({ list, onClick }) => {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-3">
       {list.map((item, i) => (
         <VacancyItem
           key={i}
