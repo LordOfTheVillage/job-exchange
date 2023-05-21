@@ -30,6 +30,7 @@ const VacancyItem: FC<VacancyItemProps> = ({
       justify={"space-between"}
       className="rounded-xl p-6 border-gray-200 border"
       style={{ minWidth: "773px" }}
+      data-elem={`vacancy-${item.id}`}
     >
       <Flex gap={12} direction={"column"}>
         {linked ? (
@@ -51,7 +52,10 @@ const VacancyItem: FC<VacancyItemProps> = ({
           {item.town.title}
         </Flex>
       </Flex>
-      <button onClick={() => onClick(item)}>
+      <button
+        data-elem={`vacancy-${item.id}-shortlist-button`}
+        onClick={() => onClick(item)}
+      >
         {status ? (
           <IconStarFilled className="text-blue-500" />
         ) : (

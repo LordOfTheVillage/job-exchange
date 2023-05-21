@@ -29,14 +29,18 @@ const RangeFilter: FC<RangeFilterProps> = ({
         {title}
       </Text>
       <CountInput
+        min={0}
         onChange={setMin}
         defaultValue={defaultRange.min}
         placeholder={PLACEHOLDERS.PAYMENT_FROM}
+        testData={"salary-from-input"}
       />
       <CountInput
+        min={0}
         onChange={setMax}
         defaultValue={defaultRange.max}
         placeholder={PLACEHOLDERS.PAYMENT_TO}
+        testData={"salary-to-input"}
       />
     </Flex>
   )

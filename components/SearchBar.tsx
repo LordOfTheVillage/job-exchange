@@ -20,6 +20,7 @@ const SearchBar: FC<SearchBarProps> = () => {
 
   return (
     <TextInput
+      data-elem="search-input"
       icon={<IconSearch size="1rem" />}
       value={value}
       onChange={(e) => setValue(e.target.value)}
@@ -29,7 +30,10 @@ const SearchBar: FC<SearchBarProps> = () => {
       styles={{ input: { minWidth: "773px", borderColor: "#EAEBED" } }}
       radius={8}
       rightSection={
-        <Link href={pathname + createQueryString(paramsObject)}>
+        <Link
+          data-elem="search-button"
+          href={pathname + createQueryString(paramsObject)}
+        >
           <Button radius="md" size="xs">
             Поиск
           </Button>

@@ -73,7 +73,10 @@ const Filters: FC<FiltersProps> = ({ catalogues }) => {
           defaultRange={defaultRange}
           title="Оклад"
         />
-        <Link href={pathname + createQueryString(paramsObject)}>
+        <Link
+          data-elem="search-button"
+          href={pathname + createQueryString(paramsObject)}
+        >
           <Button radius={8} fullWidth>
             Применить
           </Button>

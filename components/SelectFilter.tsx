@@ -37,6 +37,7 @@ const SelectFilter: FC<SelectFilterProps> = ({
         radius={8}
         onChange={handleSelect}
         defaultValue={defaultValue}
+        data-elem="industry-select"
       />
     </Flex>
   )
