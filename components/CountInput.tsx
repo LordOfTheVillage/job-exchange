@@ -6,12 +6,16 @@ interface CountInputProps {
   onChange: (number: number) => void
   defaultValue: number | undefined
   placeholder: string
+  min: number
+  testData: string
 }
 
 const CountInput: FC<CountInputProps> = ({
   onChange,
   defaultValue,
   placeholder,
+  min,
+  testData,
 }) => {
   const [value, setValue] = useState(defaultValue)
 
@@ -27,8 +31,9 @@ const CountInput: FC<CountInputProps> = ({
       onChange={handleInputChange}
       placeholder={placeholder}
       value={value}
-      min={0}
+      min={min}
       radius={8}
+      data-elem={`${testData}`}
       styles={{
         control: { border: "none", color: "#ACADB9" },
         controlDown: { marginTop: 0 },
