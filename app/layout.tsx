@@ -1,5 +1,6 @@
 import Header from "@components/Header"
 import RootStyleRegistry from "./emotion"
+import "@styles/global.css"
 
 export const metadata = {
   title: "Job Exchange",

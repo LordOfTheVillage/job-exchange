@@ -1,4 +1,3 @@
-import "@styles/global.css"
 import api from "@api/api"
 import VacanciesList from "@components/VacanciesList"
 import SearchBar from "@components/SearchBar"
