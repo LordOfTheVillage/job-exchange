@@ -25,6 +25,11 @@ export interface VacancyListType {
   total: number
 }
 
+export interface LinksType {
+  title: string
+  path: string
+}
+
 export interface QueryParams {
   [key: string]: string | number | boolean | string[]
 }
@@ -34,4 +39,4 @@ export interface RangeType {
   max: number | undefined
 }
 
-export type ServerFC<P = {}> = (props: P) => Promise<JSX.Element>;
+export type ServerFC<P = {}> = (props: P) => Promise<JSX.Element>

@@ -57,7 +57,7 @@ const Filters: FC<FiltersProps> = ({ catalogues }) => {
         </Text>
         <Link href={pathname}>
           <Text size={14} color="#ACADB9" className="flex items-center">
-            Сбросить все <IconX size="0.8rem" className="mt-1 ml-1" />
+            Сбросить все <IconX size="0.8rem" className="ml-1" />
           </Text>
         </Link>
       </Flex>

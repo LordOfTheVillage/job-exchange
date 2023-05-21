@@ -20,7 +20,7 @@ class API {
         "X-Api-App-Id":
           "v3.r.137440105.ffdbab114f92b821eac4e21f485343924a773131.06c3bdbb8446aeb91c35b80c42ff69eb9c457948",
         Authentication:
-          "Bearer v3.r.137440105.1a8a191c01e690d0716da8ebb8631cfbccdc7a57.c206df7a823f0208ed2d960dc423a123bba71daf",
+          "Bearer v3.r.137440105.7fb426d6eaaad9e6b55b938588308fa3b6d8260e.e5fa259d4171b2e4253506f4fe0920d9a2cd70b6",
       },
     })
   }

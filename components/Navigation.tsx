@@ -1,29 +1,31 @@
 import { Flex, Text } from "@mantine/core"
 import router from "@utils/router"
+import { LinksType } from "@utils/types/types"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { FC } from "react"
 
-interface NavigationProps {}
+interface NavigationProps {
+  links: LinksType[]
+}
 
-const NAVIGATION_LINKS = [
-  {
-    title: "Поиск вакансий",
-    path: router.main,
-  },
-  {
-    title: "Избранное",
-    path: router.favorites,
-  },
-]
-
-const Navigation: FC<NavigationProps> = () => {
+const Navigation: FC<NavigationProps> = ({ links }) => {
+  const pathname = usePathname()
   return (
     <Flex justify="space-between" gap={60}>
-      {NAVIGATION_LINKS.map((link, i) => (
-        <Link href={link.path} key={i}>
-          <Text className="hover:text-blue-500">{link.title}</Text>
-        </Link>
-      ))}
+      {links.map((link, i) => {
+        const isActive = pathname === link.path
+        return (
+          <Link href={link.path} key={i}>
+            <Text
+              color={isActive ? "#5E96FC" : "#232134"}
+              className={` hover:text-blue-500`}
+            >
+              {link.title}
+            </Text>
+          </Link>
+        )
+      })}
     </Flex>
   )
 }

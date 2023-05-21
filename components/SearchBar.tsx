@@ -24,9 +24,9 @@ const SearchBar: FC<SearchBarProps> = () => {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       placeholder={PLACEHOLDERS.SEARCH}
-      rightSectionWidth={80}
+      rightSectionWidth={83}
       size="md"
-      style={{ minWidth: "773px" }}
+      styles={{ input: { minWidth: "773px", borderColor: "#EAEBED" } }}
       radius={8}
       rightSection={
         <Link href={pathname + createQueryString(paramsObject)}>

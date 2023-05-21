@@ -1,6 +1,7 @@
 import api from "@api/api"
+import VacancyItem from "@components/VacancyItem"
+import VacancyPage from "@components/VacancyPage"
 import { ServerFC } from "@utils/types/types"
-import parse from "html-react-parser"
 
 interface PageProps {
   params: {
@@ -11,14 +12,7 @@ interface PageProps {
 const Page: ServerFC<PageProps> = async (context) => {
   const id = context.params.id
   const vacancy = await api.getVacancy(id)
-  return (
-    <div>
-      Hello, {vacancy.firm_name}{" "}
-      <div>
-        <div>{parse(vacancy.vacancyRichText)}</div>
-      </div>
-    </div>
-  )
+  return <VacancyPage vacancy={vacancy} />
 }
 
 export default Page

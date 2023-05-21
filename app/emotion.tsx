@@ -25,6 +25,7 @@ export default function RootStyleRegistry({
       <MantineProvider
         withGlobalStyles
         withNormalizeCSS
+        theme={{ fontFamily: "Inter, sans-serif" }}
       >
         {children}
       </MantineProvider>
