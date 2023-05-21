@@ -2,7 +2,7 @@ import { VacancyType } from "./types/types"
 
 export enum PAGE_CONFIG {
   MAX_ITEMS_LENGTH = 500,
-  PAGE_SIZE = 20,
+  PAGE_SIZE = 4,
 }
 
 export enum QUERY_NAMES {
@@ -27,6 +27,7 @@ export const DEFAULT_CATEGORIES_PARAMS = {
 
 export const DEFAULT_VACANCIES_PARAMS = {
   published: "1",
+  count: PAGE_CONFIG.PAGE_SIZE,
 }
 
 export const countPages = (total: number) => {
