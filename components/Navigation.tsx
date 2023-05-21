@@ -1,5 +1,4 @@
 import { Flex, Text } from "@mantine/core"
-import router from "@utils/router"
 import { LinksType } from "@utils/types/types"
 import Link from "next/link"
 import { usePathname } from "next/navigation"

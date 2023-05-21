@@ -4,7 +4,7 @@ import { usePathname, useSearchParams } from "next/navigation"
 import Link from "next/link"
 import useQueryString from "@hooks/useQueryString"
 import { PLACEHOLDERS, QUERY_NAMES } from "@utils/utils"
-import { ActionIcon, Button, StarIcon, TextInput } from "@mantine/core"
+import { Button, TextInput } from "@mantine/core"
 import { IconSearch } from "@tabler/icons-react"
 
 interface SearchBarProps {}

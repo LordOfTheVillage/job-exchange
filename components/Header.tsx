@@ -2,7 +2,7 @@
 import { FC } from "react"
 import Logo from "./Logo"
 import Navigation from "./Navigation"
-import { Grid, Flex } from "@mantine/core"
+import { Flex } from "@mantine/core"
 import router from "@utils/router"
 import { LinksType } from "@utils/types/types"
 

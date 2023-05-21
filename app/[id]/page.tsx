@@ -1,5 +1,4 @@
 import api from "@api/api"
-import VacancyItem from "@components/VacancyItem"
 import VacancyPage from "@components/VacancyPage"
 import { ServerFC } from "@utils/types/types"
 
